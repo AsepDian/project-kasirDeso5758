@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 class LaporanController extends Controller
 {
     public function index(){
-        $menu = Menu::get();
         $data = DetailTransaksi::all();
         return view('admin.laporan.index', compact('data', 'menu'));
     }
