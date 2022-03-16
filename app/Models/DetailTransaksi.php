@@ -14,5 +14,9 @@ class DetailTransaksi extends Model
     public function menu(){
         return $this->belongsTo(Menu::class, 'menu_id','id');
      }
+     public function transaksi()
+     {
+         return $this->belongsTo(Transaksi::class, 'transaksi_id', 'id');
+     }
     
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KasirController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UsersController;
@@ -43,6 +44,9 @@ Route::get('hapuskategori/{id}', [KategoriController::class,'hapus']);
 Route::get('editkategori/{id}', [KategoriController::class,'edit']);
 Route::post('editkategori/{id}', [KategoriController::class, 'update']);
 
+//laporan
+Route::get('laporan', [LaporanController::class, 'index']);
+
 //Kasir
 Route::get('kasirmenu', [KasirController::class,'index']);
 Route::get('kasirtrans', [KasirController::class, 'oldtransaksi']);
@@ -54,6 +58,3 @@ Route::resource('pesanan', PesananController::class);
 //transaksi
 Route::post('transaksi/bayar/{transaksi}', [TransaksiController::class, 'bayar']);
 Route::resource('transaksi', TransaksiController::class);
-
-
-
