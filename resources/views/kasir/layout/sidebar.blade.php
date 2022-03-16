@@ -35,11 +35,3 @@
         </ul>
     </div>
 </li>
-<li class="nav-item menu-items">
-    <a class="nav-link" href="#">
-        <span class="menu-icon">
-            <i class="mdi mdi-table-large"></i>
-        </span>
-        <span class="menu-title">Laporan</span>
-    </a>
-</li>
