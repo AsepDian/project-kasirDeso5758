@@ -29,10 +29,10 @@
                                     <td class="text-white">{{ $values->subtotal }}</td>
                                 </tr>
                             @endforeach
-                            {{-- <tr>
+                            <tr>
                                 <td colspan="5" class="text-white text-center">Total pemasukan</td>
                                 <td class="text-white">{{ $data->sum('subtotal') }}</td>
-                            </tr> --}}
+                            </tr>
                         </tbody>
                     </table>
 
