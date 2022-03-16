@@ -51,6 +51,7 @@ Route::get('laporan', [LaporanController::class, 'index']);
 Route::get('kasirmenu', [KasirController::class,'index']);
 Route::get('kasirtrans', [KasirController::class, 'oldtransaksi']);
 Route::get('detail/edit/{id}', [KasirController::class, 'edit']);
+Route::post('cari', [KasirController::class, 'cari']);
 
 //pesanan
 Route::resource('pesanan', PesananController::class);

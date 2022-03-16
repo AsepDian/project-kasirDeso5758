@@ -5,6 +5,16 @@
             <div class="card-header">
                 <h3 class="card-title">Laporan Pengeluaran</h3>
             </div>
+            <form action="{{ url('cari') }}" method="post" class="form-inline" style="margin-left: 12%">
+                @csrf
+                <label class="sr-only" for="inlineFormInputName2">Name</label>
+                <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2">
+                <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                <div class="input-group mb-2 mr-sm-2">
+                    <input type="date" class="form-control" id="inlineFormInputGroupUsername2">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </form>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover" border="1">
@@ -29,10 +39,10 @@
                                     <td class="text-white">{{ $values->subtotal }}</td>
                                 </tr>
                             @endforeach
-                            <tr>
+                            {{-- <tr>
                                 <td colspan="5" class="text-white text-center">Total pemasukan</td>
                                 <td class="text-white">{{ $data->sum('subtotal') }}</td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
 
