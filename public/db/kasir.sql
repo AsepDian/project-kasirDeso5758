@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2022 at 06:17 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 7.4.22
+-- Generation Time: Mar 17, 2022 at 12:00 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,28 +40,25 @@ CREATE TABLE `detail_transaksi` (
 --
 
 INSERT INTO `detail_transaksi` (`id`, `transaksi_id`, `menu_id`, `jumlah`, `subtotal`) VALUES
-(1, 1, 2, 4, 56000),
-(2, 1, 7, 2, 20000),
-(3, 1, 8, 2, 14000),
-(4, 2, 2, 4, 56000),
-(5, 2, 2, 4, 56000),
-(6, 2, 7, 4, 40000),
-(7, 3, 2, 2, 28000),
-(8, 3, 8, 2, 14000),
-(9, 4, 2, 2, 28000),
-(10, 4, 7, 2, 20000),
-(11, 4, 8, 2, 14000),
-(12, 6, 2, 4, 56000),
-(13, 6, 8, 2, 14000),
-(14, 6, 7, 4, 40000),
-(15, 5, 2, 2, 28000),
-(16, 5, 2, 4, 56000),
-(17, 5, 7, 4, 40000),
-(18, 5, 8, 4, 28000),
-(19, 5, 9, 4, 20000),
-(20, 7, 2, 2, 28000),
-(21, 7, 7, 2, 20000),
-(22, 7, 8, 2, 14000);
+(1, 1, 1, 4, 56000),
+(2, 1, 5, 2, 10000),
+(3, 1, 3, 2, 14000),
+(4, 2, 4, 4, 40000),
+(5, 2, 3, 1, 7000),
+(6, 2, 6, 2, 14000),
+(7, 3, 1, 2, 28000),
+(8, 3, 2, 2, 10000),
+(9, 3, 4, 2, 20000),
+(10, 4, 1, 4, 56000),
+(11, 4, 3, 1, 7000),
+(12, 4, 5, 2, 10000),
+(13, 4, 6, 1, 7000),
+(14, 5, 1, 4, 56000),
+(15, 5, 4, 4, 40000),
+(16, 5, 5, 4, 20000),
+(17, 5, 3, 4, 28000),
+(18, 6, 2, 2, 10000),
+(19, 7, 3, 4, 28000);
 
 -- --------------------------------------------------------
 
@@ -80,8 +77,8 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id`, `nama_kategori`) VALUES
 (1, 'makanan'),
-(2, 'minuman'),
-(3, 'cemilan');
+(2, 'Minuman'),
+(3, 'Cemilan');
 
 -- --------------------------------------------------------
 
@@ -102,11 +99,12 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `nama_menu`, `gambar`, `kategori_id`, `harga`) VALUES
-(2, 'Nasi Goreng', 'image-menu/707hQytUVSKz4EgxT95MtsVoILPyPwGOrSOLDM3K.jpg', 1, 14000),
-(7, 'Sosis Bakar', 'image-menu/ybxpl0zavNaNbmGGywRK2gf7yDIaqaWLDrM9fWPP.jpg', 3, 10000),
-(8, 'Kopi capucino', 'image-menu/hmzdue2we8giP16PPfMNhCvMXRNiWJDE2d91Opte.jpg', 2, 7000),
-(9, 'Kopi Hitam', 'image-menu/L2di7NppxYKChoBZ8T5zWh8O4J06Q0SCZd9SRYyg.jpg', 1, 5000),
-(10, 'Kopi', 'image-menu/HoEFNYDlySru2IqIiEyV1tyrobXkj1lzV2rdzbTT.jpg', 1, 5000);
+(1, 'Nasi Goreng', 'image-menu/jHsjb8mg7dZ78YftaZvx4TJJcGcTXObeOoVtVE9r.jpg', 1, 14000),
+(2, 'Kopi Hitam', 'image-menu/VlORhzTdy8cOW1643oiNpfsmz45pF5otfmptGz6i.jpg', 2, 5000),
+(3, 'Kopi capucino', 'image-menu/DTkPchropULCfwKCbB4dYNqLPjvSzX57ThmIvzTT.jpg', 2, 7000),
+(4, 'Sosis Bakar', 'image-menu/0YejUWieHAu3umPOUmK2SS9gLpf87TiRWmRFGxW0.jpg', 3, 10000),
+(5, 'susu', 'image-menu/ygPKRKh9bor95GE4QxK8jeCfRFX2bkI1hqVBkAux.jpg', 2, 5000),
+(6, 'Kopi Mocacino', 'image-menu/PhCCwbwjYqY6vta1xg3iJz2wqYLfYyquFRsUEs5u.jpg', 2, 7000);
 
 -- --------------------------------------------------------
 
@@ -126,14 +124,13 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `tanggal`, `nama_pemesan`, `cash`) VALUES
-(1, '2022-03-12 13:59:16', 'Indra Rusmana', 100000),
-(2, '2022-03-12 14:05:42', 'Asep Dian', 160000),
-(3, '2022-03-12 14:06:52', 'dayen', 50000),
-(4, '2022-03-12 14:09:58', 'Asep Dian', 70000),
-(5, '2022-03-12 14:29:18', 'Asep Dian', 200000),
-(6, '2022-03-12 16:41:37', 'Iman Kasep', 150000),
-(7, '2022-03-13 00:29:50', 'Dede Rahmawati', 100000),
-(8, '2022-03-13 10:50:21', 'Asep Dian', NULL);
+(1, '2022-03-16 20:30:29', 'Asep Dian', 100000),
+(2, '2022-03-16 20:30:38', 'Nurfi', 70000),
+(3, '2022-03-16 20:30:49', 'Indra Rusmana', 100000),
+(4, '2022-03-16 20:31:02', 'Devi Mulyana', 100000),
+(5, '2022-03-16 20:31:12', 'Iqbal Anugrah', 200000),
+(6, '2022-03-16 20:31:24', 'Dida Fathan', 10000),
+(7, '2022-03-16 20:31:36', 'Hilmi Aidzil', 30000);
 
 -- --------------------------------------------------------
 
@@ -154,8 +151,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `level`) VALUES
-(1, 'Asep Dian', 'asepdian@gmail.com', '$2y$10$Y33zzSJMm4q4sOUr4qnjv.m0s/esvJx8nO1JycsZ8yyNPCC00zzxe', 'admin'),
-(2, 'dian', 'dian@gmail.com', '$2y$10$TSeMfq129vjgiDkN.eGwL.abXgMeaguWeVItCWZu8dF0HKh53KC5u', 'kasir');
+(1, 'Admin', 'asepdian@gmail.com', '$2y$10$Y33zzSJMm4q4sOUr4qnjv.m0s/esvJx8nO1JycsZ8yyNPCC00zzxe', 'admin'),
+(2, 'Kasir', 'dian@gmail.com', '$2y$10$TSeMfq129vjgiDkN.eGwL.abXgMeaguWeVItCWZu8dF0HKh53KC5u', 'kasir');
 
 --
 -- Indexes for dumped tables
@@ -199,25 +196,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
