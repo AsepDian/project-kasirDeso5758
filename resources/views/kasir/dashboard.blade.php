@@ -7,6 +7,7 @@
                 <div class="card-title">Daftar Menu</div>
                     <img src="{{ asset('storage'.$m->gambar ) }}" alt=""><br>
                     <h3>{{ $m->nama_menu }}</h3><br>
+                    <p><i>{{ $m->kategori->nama_kategori }}</i></p><br>
                     <h5>Rp. {{ $m->harga }}</h5>
              </div>
          </div>
