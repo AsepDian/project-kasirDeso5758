@@ -3,7 +3,7 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Laporan Pengeluaran</h3>
+                <h3 class="card-title">Laporan Pemasukan</h3>
             </div>
             <form action="{{ url('cari') }}" method="post" class="form-inline" style="margin-left: 12%">
                 @csrf
