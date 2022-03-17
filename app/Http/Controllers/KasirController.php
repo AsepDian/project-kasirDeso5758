@@ -25,7 +25,8 @@ class KasirController extends Controller
         return view('kasir.oldtransaksi.detail', compact('menu','data'));
     }
     public function dashboard(){
-        return view('kasir.dashboard');
+        $data = Menu::get();
+        return view('kasir.dashboard', compact('data'));
     }
 
     public function cari(Request $request){
