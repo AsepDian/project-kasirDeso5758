@@ -30,34 +30,39 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('kasir', [KasirController::class, 'dashboard']);
-Route::get('admin', [DashboardController::class,'index']);
+Route::get('admin', [DashboardController::class, 'index']);
+Route::middleware('auth')->group(function () {
+    Route::middleware('level:admin')->group(function () {
 
-//user
-Route::resource('user',UsersController::class);
+        //user
+        Route::resource('user', UsersController::class);
 
-//menu
-Route::resource('menu',MenuController::class);
+        //menu
+        Route::resource('menu', MenuController::class);
 
-//kategori
-Route::get('dataKategori', [KategoriController::class, 'index']);
-Route::post('addKategori', [KategoriController::class, 'add']);
-Route::get('hapuskategori/{id}', [KategoriController::class,'hapus']);
-Route::get('editkategori/{id}', [KategoriController::class,'edit']);
-Route::post('editkategori/{id}', [KategoriController::class, 'update']);
+        //kategori
+        Route::get('dataKategori', [KategoriController::class, 'index']);
+        Route::post('addKategori', [KategoriController::class, 'add']);
+        Route::get('hapuskategori/{id}', [KategoriController::class, 'hapus']);
+        Route::get('editkategori/{id}', [KategoriController::class, 'edit']);
+        Route::post('editkategori/{id}', [KategoriController::class, 'update']);
 
-//laporan
-Route::get('laporan', [LaporanController::class, 'index']);
+        //laporan
+        Route::get('laporan', [LaporanController::class, 'index']);
+    });
+    Route::middleware('level:kasir')->group(function () {
 
-//Kasir
-Route::get('kasirmenu', [KasirController::class,'index']);
-Route::get('kasirtrans', [KasirController::class, 'oldtransaksi']);
-Route::get('detail/edit/{id}', [KasirController::class, 'edit']);
-Route::post('cari', [KasirController::class, 'cari']);
+        //Kasir
+        Route::get('kasirmenu', [KasirController::class, 'index']);
+        Route::get('kasirtrans', [KasirController::class, 'oldtransaksi']);
+        Route::get('detail/edit/{id}', [KasirController::class, 'edit']);
+        Route::post('cari', [KasirController::class, 'cari']);
 
-//pesanan
-Route::resource('pesanan', PesananController::class);
+        //pesanan
+        Route::resource('pesanan', PesananController::class);
 
-//transaksi
-Route::post('transaksi/bayar/{transaksi}', [TransaksiController::class, 'bayar']);
-Route::resource('transaksi', TransaksiController::class);
-Route::get('cetak', [LaporanController::class, 'cetak']);
+        //transaksi
+        Route::post('transaksi/bayar/{transaksi}', [TransaksiController::class, 'bayar']);
+        Route::resource('transaksi', TransaksiController::class);
+    });
+});
