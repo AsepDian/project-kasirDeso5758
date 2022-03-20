@@ -10,21 +10,17 @@ use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
-    public function index(Request $request){
-        if($request->has('forDate')&&$request->has('toDate')){
+    public function index(Request $request)
+    {
+        if ($request->has('forDate') && $request->has('toDate')) {
             $data = Transaksi::whereBetween('tanggal', [$request->forDate, $request->toDate])->get();
-        }else{
+        } else {
             $data = Transaksi::all();
         }
+        if($request->has('cetak')){
+            $pdf = Pdf::loadView('admin.laporan.cetak', compact('data'));
+            return $pdf->stream('invoice.pdf');
+        }
         return view('admin.laporan.index', compact('data'));
-    }
-    public function cetak(Request $request){
-            if($request->has('forDate')&&$request->has('toDate')){
-                $data = Transaksi::whereBetween('tanggal', [$request->forDate, $request->toDate])->get();
-            }else{
-                $data = Transaksi::all();
-            }
-        $pdf = Pdf::loadView('admin.laporan.cetak', compact('data'));
-        return $pdf->stream('invoice.pdf');
     }
 }
