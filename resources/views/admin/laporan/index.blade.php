@@ -7,10 +7,10 @@
             </div>
             <form action="" method="get" class="form-inline" style="margin-left: 12%">
                 <label class="sr-only" for="inlineFormInputName2">Dari</label>
-                <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="forDate">
+                <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="forDate" value="{{ request()->forDate??'' }}">
                 <label class="sr-only" for="inlineFormInputGroupUsername2">Sampai</label>
                 <div class="input-group mb-2 mr-sm-2">
-                    <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="toDate">
+                    <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="toDate" value="{{ request()->toDate??'' }}">
                 </div>
                 <button name="cari" type="submit" class="btn btn-primary mb-2">Submit</button>
                 <button name="cetak" class="btn btn-danger mb-2" style="margin-left: 3px;">Cetak</button>
