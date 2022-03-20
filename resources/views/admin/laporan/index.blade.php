@@ -13,15 +13,6 @@
                     <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="toDate" value="{{ request()->toDate??'' }}">
                 </div>
                 <button name="cari" type="submit" class="btn btn-primary mb-2">Submit</button>
-                <button name="cetak" class="btn btn-danger mb-2" style="margin-left: 3px;">Cetak</button>
-            </form>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover" border="1">
-                        <thead>
-                            <tr>
-                                <th class="text-white"> <b>No</b> </th>
-                                <th class="text-white"> <b>Tanggal</b> </th>
                                 <th class="text-white"> <b>Nama menu</b> </th>
                                 <th class="text-white"> <b>Harga</b> </th>
                                 <th class="text-white"> <b>Jumlah</b> </th>
