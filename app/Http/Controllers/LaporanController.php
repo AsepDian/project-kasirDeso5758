@@ -18,8 +18,12 @@ class LaporanController extends Controller
         }
         return view('admin.laporan.index', compact('data'));
     }
-    public function cetak(){
-        $data = DetailTransaksi::all();
+    public function cetak(Request $request){
+            if($request->has('forDate')&&$request->has('toDate')){
+                $data = Transaksi::whereBetween('tanggal', [$request->forDate, $request->toDate])->get();
+            }else{
+                $data = Transaksi::all();
+            }
         $pdf = Pdf::loadView('admin.laporan.cetak', compact('data'));
         return $pdf->stream('invoice.pdf');
     }
