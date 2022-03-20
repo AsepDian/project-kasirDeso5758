@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CekController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\KategoriController;
@@ -59,3 +60,4 @@ Route::resource('pesanan', PesananController::class);
 //transaksi
 Route::post('transaksi/bayar/{transaksi}', [TransaksiController::class, 'bayar']);
 Route::resource('transaksi', TransaksiController::class);
+Route::get('cetak', [LaporanController::class, 'cetak']);

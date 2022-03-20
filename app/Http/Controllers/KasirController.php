@@ -33,11 +33,9 @@ class KasirController extends Controller
         $forDate = $request->input('forDate');
         $toDate  = $request->input('toDate');
 
-        $data = DB::table('transaksi')->select()
-            ->where('tanggal', '>=', $forDate)
-            ->where('tanggal', '<=', $toDate)
-            ->get();
-
-            dd($data);
+        $transaksi = Transaksi::
+        where('tanggal',$forDate)->where('tanggal', '<=', $toDate)->find();
+        dd($transaksi);
+        return view('admin.laporan.cek', compact('transaksi'));
     }
 }

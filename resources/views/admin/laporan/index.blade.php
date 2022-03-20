@@ -5,15 +5,15 @@
             <div class="card-header">
                 <h3 class="card-title">Laporan Pemasukan</h3>
             </div>
-            <form action="{{ url('cari') }}" method="post" class="form-inline" style="margin-left: 12%">
-                @csrf
-                <label class="sr-only" for="inlineFormInputName2">Name</label>
-                <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2">
-                <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+            <form action="" method="get" class="form-inline" style="margin-left: 12%">
+                <label class="sr-only" for="inlineFormInputName2">Dari</label>
+                <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="forDate">
+                <label class="sr-only" for="inlineFormInputGroupUsername2">Sampai</label>
                 <div class="input-group mb-2 mr-sm-2">
-                    <input type="date" class="form-control" id="inlineFormInputGroupUsername2">
+                    <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="toDate">
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <a href="{{ url('cetak') }}" class="btn btn-danger mb-2" style="margin-left: 3px;">Cetak</a>
             </form>
             <div class="card-body">
                 <div class="table-responsive">
@@ -30,14 +30,16 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $values)
+                                @foreach($values->detail_transaksi as $v)
                                 <tr>
                                     <td class="text-white">{{ $loop->iteration }}</td>
-                                    <td class="text-white">{{ $values->transaksi->tanggal }}</td>
-                                    <td class="text-white">{{ $values->menu->nama_menu }}</td>
-                                    <td class="text-white">{{ $values->menu->harga }}</td>
-                                    <td class="text-white">{{ $values->jumlah }}</td>
-                                    <td class="text-white">{{ $values->subtotal }}</td>
+                                    <td class="text-white">{{ $v->transaksi->tanggal }}</td>
+                                    <td class="text-white">{{ $v->menu->nama_menu }}</td>
+                                    <td class="text-white">{{ $v->menu->harga }}</td>
+                                    <td class="text-white">{{ $v->jumlah }}</td>
+                                    <td class="text-white">{{ $v->subtotal }}</td>
                                 </tr>
+                                @endforeach
                             @endforeach
                             {{-- <tr>
                                 <td colspan="5" class="text-white text-center">Total pemasukan</td>
