@@ -13,6 +13,15 @@
                     <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="toDate" value="{{ request()->toDate??'' }}">
                 </div>
                 <button name="cari" type="submit" class="btn btn-primary mb-2">Submit</button>
+                <button name="cetak" type="submit" class="btn btn-danger mb-2" style="margin-left: 2px">Cetak</button>
+            </form>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" border="1">
+                        <thead>
+                            <tr>
+                                <th class="text-white"> <b>No</b> </th>
+                                <th class="text-white"> <b>Tanggal</b> </th>
                                 <th class="text-white"> <b>Nama menu</b> </th>
                                 <th class="text-white"> <b>Harga</b> </th>
                                 <th class="text-white"> <b>Jumlah</b> </th>
@@ -20,10 +29,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $i=1;
+                            @endphp
                             @foreach ($data as $values)
                                 @foreach($values->detail_transaksi as $v)
                                 <tr>
-                                    <td class="text-white">{{ $loop->iteration }}</td>
+                                    <td class="text-white"><?= $i++; ?></td>
                                     <td class="text-white">{{ $v->transaksi->tanggal }}</td>
                                     <td class="text-white">{{ $v->menu->nama_menu }}</td>
                                     <td class="text-white">{{ $v->menu->harga }}</td>
@@ -32,10 +44,6 @@
                                 </tr>
                                 @endforeach
                             @endforeach
-                            {{-- <tr>
-                                <td colspan="5" class="text-white text-center">Total pemasukan</td>
-                                <td class="text-white">{{ $data->sum('subtotal') }}</td>
-                            </tr> --}}
                         </tbody>
                     </table>
 

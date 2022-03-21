@@ -1122,11 +1122,12 @@
         </tr>
         @php
         $total = 0;
+        $i = 1;
         @endphp
         @foreach ($data as $value)
         @foreach ($value->detail_transaksi as $v )
         <tr>
-            <td style="padding: 5px; padding-left: 5px; padding-right:5px;">{{ $loop->iteration }}</td>
+            <td style="padding: 5px; padding-left: 5px; padding-right:5px;">{{ $i++; }}</td>
             <td style="padding: 5px; padding-left: 5px; padding-right:5px;">{{ $v->transaksi->tanggal }}</td>
             <td style="padding: 5px; padding-left: 5px; padding-right:5px;">{{ $v->menu->nama_menu }}</td>
             <td style="padding: 5px; padding-left: 5px; padding-right:5px;">{{ $v->jumlah }}</td>
