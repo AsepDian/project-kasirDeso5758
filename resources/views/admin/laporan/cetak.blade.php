@@ -1107,8 +1107,10 @@
 </head>
 
 <body>
-    <h3 style="text-align: center;">Laporan Pemasukan/Pendapatan</h3>
-    <p style="text-align: center;">Kedai Deso5758</p>
+    
+    <h3 style="text-align: center;">LAPORAN PEMASUKAN ATAU PENDAPATAN</h3>
+    <p style="text-align: center;"><b>Kedai Deso5758</b></p>
+    <p style="text-align: center">Jln.Raya Garut Singaparna Kp.Sunia Sari Desa.Sukasukur</p>
     <hr>
     <table class="table table-striped table-bordered">
         <tr>
