@@ -17,7 +17,7 @@ class Level
     public function handle(Request $request, Closure $next, $level)
     {
         if($request->user()->level!=$level){
-            return redirect('login');
+            return back();
         }
         return $next($request);
     }
