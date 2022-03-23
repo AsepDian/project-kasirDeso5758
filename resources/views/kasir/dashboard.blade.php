@@ -3,12 +3,11 @@
 @foreach ($data as $m )
 <div class="col-12 col-md-4 mb-4">
         <div class="card">
-            <div class="card-body" style="display: inline-block;">
-                <div class="card-title">Daftar Menu</div>
-                    <img src="{{ asset('storage'.$m->gambar ) }}" alt=""><br>
-                    <h3>{{ $m->nama_menu }}</h3><br>
-                    <p><i>{{ $m->kategori->nama_kategori }}</i></p><br>
+            <div class="card-body" style="display: inline-block; margin:auto; text-align:center;">
+                    <img src="{{ asset('storage/'.$m->gambar ) }}" alt="" width="200" height="150"><br>
+                    <h3 style="margin-top: 5px">{{ $m->nama_menu }}</h3><br>
                     <h5>Rp. {{ $m->harga }}</h5>
+                    {{-- <button type="submit" class="btn btn-primary">Pesan</button> --}}
              </div>
          </div>
 </div>
