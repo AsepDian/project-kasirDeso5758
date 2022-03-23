@@ -1111,15 +1111,16 @@
     <h3 style="text-align: center;">LAPORAN PEMASUKAN ATAU PENDAPATAN</h3>
     <p style="text-align: center;"><b>Kedai Deso5758</b></p>
     <p style="text-align: center">Jln.Raya Garut Singaparna Kp.Sunia Sari Desa.Sukasukur</p>
+    <p style="text-align: center">Tanggal : {{ $forDate }} Sampai {{ $toDate }}</p>
     <hr>
     <table class="table table-striped table-bordered">
         <tr>
-            <th style="padding: 5px; padding-left: 5px; padding-right:5px;">No</th>
-            <th style="padding: 5px; padding-left: 5px; padding-right:5px;">Tanggal</th>
-            <th style="padding: 5px; padding-left: 5px; padding-right:5px;">Nama Menu</th>
-            <th style="padding: 5px; padding-left: 5px; padding-right:5px;">Jumlah</th>
-            <th style="padding: 5px; padding-left: 5px; padding-right:5px;">Harga</th>
-            <th style="padding: 5px; padding-left: 5px; padding-right:5px;">subtotal</th>
+            <th>No</th>
+            <th>Tanggal</th>
+            <th>Nama Menu</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+            <th>subtotal</th>
 
         </tr>
         @php
@@ -1129,12 +1130,12 @@
         @foreach ($data as $value)
         @foreach ($value->detail_transaksi as $v )
         <tr>
-            <td style="padding: 5px; padding-left: 5px; padding-right:5px;">{{ $i++; }}</td>
-            <td style="padding: 5px; padding-left: 5px; padding-right:5px;">{{ $v->transaksi->tanggal }}</td>
-            <td style="padding: 5px; padding-left: 5px; padding-right:5px;">{{ $v->menu->nama_menu }}</td>
-            <td style="padding: 5px; padding-left: 5px; padding-right:5px;">{{ $v->jumlah }}</td>
-            <td style="padding: 5px; padding-left: 5px; padding-right:5px;">Rp. {{ $v->menu->harga }}</td>
-            <td style="padding: 5px; padding-left: 5px; padding-right:5px;">Rp. {{ $v->subtotal }}</td>
+            <td>{{ $i++; }}</td>
+            <td>{{ $v->transaksi->tanggal }}</td>
+            <td>{{ $v->menu->nama_menu }}</td>
+            <td>Rp. {{ $v->menu->harga }}</td>
+            <td>{{ $v->jumlah }}</td>
+            <td>Rp. {{ $v->subtotal }}</td>
         </tr>
         @php
         $total += $v->subtotal;

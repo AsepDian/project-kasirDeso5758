@@ -12,13 +12,15 @@ class LaporanController extends Controller
 {
     public function index(Request $request)
     {
+        $toDate = $request->toDate;
+        $forDate = $request->forDate;
         if ($request->has('forDate') && $request->has('toDate')) {
             $data = Transaksi::whereBetween('tanggal', [$request->forDate, $request->toDate])->get();
         } else {
             $data = Transaksi::all();
         }
         if($request->has('cetak')){
-            $pdf = Pdf::loadView('admin.laporan.cetak', compact('data'));
+            $pdf = Pdf::loadView('admin.laporan.cetak', compact('data','toDate','forDate'));
             return $pdf->stream('invoice.pdf');
         }
         return view('admin.laporan.index', compact('data'));
