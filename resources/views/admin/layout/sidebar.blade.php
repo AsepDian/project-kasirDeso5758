@@ -37,7 +37,7 @@
 <li class="nav-item menu-items">
     <a class="nav-link" href="{{ url('laporan') }}">
         <span class="menu-icon">
-            <i class="mdi mdi-book-open-page-variant"></i>
+            <i class="mdi mdi-book"></i>
         </span>
         <span class="menu-title">Laporan</span>
     </a>
