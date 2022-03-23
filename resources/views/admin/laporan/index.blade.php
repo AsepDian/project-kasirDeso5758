@@ -12,7 +12,7 @@
                 <div class="input-group mb-2 mr-sm-2">
                     <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="toDate" value="{{ request()->toDate??'' }}">
                 </div>
-                <button name="cari" type="submit" class="btn btn-primary mb-2">Submit</button>
+                <button name="cari" type="submit" class="btn btn-primary mb-2">Detail</button>
                 <button name="cetak" type="submit" class="btn btn-danger mb-2" style="margin-left: 2px">Cetak</button>
             </form>
                 <div class="card-body">

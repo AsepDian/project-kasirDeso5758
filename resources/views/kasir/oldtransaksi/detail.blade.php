@@ -54,6 +54,15 @@
                         </tr>
                     </tbody>
                 </table>
+                <form action="{{ url('transaksi/cetak/' . $data->id) }}" method="post"
+                    class="row d-flex justify-content-end">
+                    @csrf
+                    <div class="form-group mt-3 col-4">
+                        <div class="input-group">
+                            <button class="btn btn-success">Cetak</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
