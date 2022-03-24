@@ -28,33 +28,33 @@
             <div class="card-body">
                 <h4 class="card-title">Detail Pembelian</h4>
                 <div class="table-responsive">
-                <table class="table table-bordered text-white">
-                    <thead>
-                        <tr class="text-white">
-                            <th>No</th>
-                            <th>Menu</th>
-                            <th>Harga</th>
-                            <th>Jumlah</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data->detail_transaksi as $v)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $v->menu->nama_menu }}</td>
-                                <td>{{ $v->harga }}</td>
-                                <td>{{ $v->jumlah }}</td>
-                                <td>{{ $v->subtotal }}</td>
-
+                    <table class="table table-bordered text-white">
+                        <thead>
+                            <tr class="text-white">
+                                <th>No</th>
+                                <th>Menu</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
+                                <th>Subtotal</th>
                             </tr>
-                        @endforeach
-                        <tr>
-                            <td colspan="4" align="center">Total</td>
-                            <td>{{ $data->detail_transaksi->sum('subtotal') }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($data->detail_transaksi as $v)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $v->menu->nama_menu }}</td>
+                                    <td>{{ $v->harga }}</td>
+                                    <td>{{ $v->jumlah }}</td>
+                                    <td>{{ $v->subtotal }}</td>
+
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="4" align="center">Total</td>
+                                <td>{{ $data->detail_transaksi->sum('subtotal') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <form action="{{ url('transaksi/cetak/' . $data->id) }}" method="post"
                     class="row d-flex justify-content-end">
