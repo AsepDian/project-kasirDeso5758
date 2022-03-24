@@ -27,6 +27,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Detail Pembelian</h4>
+                <div class="table-responsive">
                 <table class="table table-bordered text-white">
                     <thead>
                         <tr class="text-white">
@@ -42,7 +43,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $v->menu->nama_menu }}</td>
-                                <td>{{ $v->menu->harga }}</td>
+                                <td>{{ $v->harga }}</td>
                                 <td>{{ $v->jumlah }}</td>
                                 <td>{{ $v->subtotal }}</td>
 
@@ -54,6 +55,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
                 <form action="{{ url('transaksi/cetak/' . $data->id) }}" method="post"
                     class="row d-flex justify-content-end">
                     @csrf

@@ -85,6 +85,7 @@ class TransaksiController extends Controller
         DetailTransaksi::create([
             'transaksi_id' => $transaksi->id,
             'menu_id' => $request->menu_id,
+            'harga' => $menu->harga,
             'jumlah' => $request->jumlah,
             'subtotal' => $request->jumlah*$menu->harga
         ]);

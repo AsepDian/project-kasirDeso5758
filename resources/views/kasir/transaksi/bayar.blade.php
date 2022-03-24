@@ -47,6 +47,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Detail Pembelian</h4>
+                <div class="table-responsive">
                 <table class="table table-bordered text-white">
                     <thead>
                         <tr class="text-white">
@@ -74,6 +75,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
                 <form action="{{ url('transaksi/bayar/' . $data->id) }}" method="post"
                     class="row d-flex justify-content-end">
                     @csrf

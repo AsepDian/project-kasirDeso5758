@@ -5,10 +5,8 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-                <a class="sidebar-brand brand-logo" href="index.html"><img
-                        src="{{ url('') }}/assets/images/logo.svg" alt="logo" /></a>
-                <a class="sidebar-brand brand-logo-mini" href="index.html"><img
-                        src="{{ url('') }}/assets/images/logo-mini.svg" alt="logo" /></a>
+                <a class="sidebar-brand brand-logo text-white" href="#" style="text-decoration: none">Kasir Deso5758</a>
+                <a class="sidebar-brand brand-logo-mini text-white" href="#" style="text-decoration: none">KD</a>
             </div>
             <ul class="nav">
                 <li class="nav-item profile">

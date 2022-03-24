@@ -13,7 +13,7 @@
                     <input type="date" class="form-control" id="inlineFormInputGroupUsername2" name="toDate" value="{{ request()->toDate??'' }}">
                 </div>
                 <button name="cari" type="submit" class="btn btn-primary mb-2">Detail</button>
-                <button name="cetak" type="submit" class="btn btn-danger mb-2" style="margin-left: 2px">Cetak</button>
+                <button name="cetak" type="submit" class="btn btn-danger mb-2" style="margin-left: 2px">EksporPDF</button>
             </form>
                 <div class="card-body">
                     <div class="table-responsive">
