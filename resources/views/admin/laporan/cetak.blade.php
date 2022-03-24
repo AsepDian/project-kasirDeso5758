@@ -1123,29 +1123,19 @@
             <th>subtotal</th>
 
         </tr>
-        @php
-        $total = 0;
-        $i = 1;
-        @endphp
-        @foreach ($data as $value)
-        @foreach ($value->detail_transaksi as $v )
+        @foreach ($data as $v)
         <tr>
-            <td>{{ $i++; }}</td>
-            <td>{{ $v->transaksi->tanggal }}</td>
-            <td>{{ $v->menu->nama_menu }}</td>
-            <td>Rp. {{ $v->menu->harga }}</td>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $v->tanggal }}</td>
+            <td>{{ $v->nama_menu }}</td>
+            <td>Rp. {{ $v->harga }}</td>
             <td>{{ $v->jumlah }}</td>
-            <td>Rp. {{ $v->subtotal }}</td>
+            <td>Rp. {{ $v->total }}</td>
         </tr>
-        @php
-        $total += $v->subtotal;
-        @endphp
-        @endphp
-        @endforeach
         @endforeach
         <tr>
-            <td style="text-align: center;" colspan="5">Jumlah pendapatan</td>
-            <td style="padding: 5px; padding-left: 5px; padding-right:5px;">Rp. {{ $total }}</td>
+            <td colspan="5" align="center">Total Pendapatan</td>
+            <td>Rp. {{ $data->sum('total') }}</td>
         </tr>
     </table>
 </body>
