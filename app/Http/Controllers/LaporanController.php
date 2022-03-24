@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailTransaksi;
+use App\Models\Laporan;
 use App\Models\Menu;
 use App\Models\Transaksi;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -15,9 +16,9 @@ class LaporanController extends Controller
         $toDate = $request->toDate;
         $forDate = $request->forDate;
         if ($request->has('forDate') && $request->has('toDate')) {
-            $data = Transaksi::whereBetween('tanggal', [$request->forDate, $request->toDate])->get();
+            $data = Laporan::whereBetween('tanggal', [$request->forDate, $request->toDate])->get();
         } else {
-            $data = Transaksi::all();
+            $data = Laporan::all();
         }
         if($request->has('cetak')){
             $pdf = Pdf::loadView('admin.laporan.cetak', compact('data','toDate','forDate'));

@@ -29,20 +29,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $i=1;
-                            @endphp
-                            @foreach ($data as $values)
-                                @foreach($values->detail_transaksi as $v)
+                            @foreach ($data as $v)
                                 <tr>
-                                    <td class="text-white"><?= $i++; ?></td>
-                                    <td class="text-white">{{ $v->transaksi->tanggal }}</td>
-                                    <td class="text-white">{{ $v->menu->nama_menu }}</td>
-                                    <td class="text-white">{{ $v->menu->harga }}</td>
+                                    <td class="text-white">{{ $loop->iteration }}</td>
+                                    <td class="text-white">{{ $v->tanggal }}</td>
+                                    <td class="text-white">{{ $v->nama_menu }}</td>
+                                    <td class="text-white">{{ $v->harga }}</td>
                                     <td class="text-white">{{ $v->jumlah }}</td>
-                                    <td class="text-white">{{ $v->subtotal }}</td>
+                                    <td class="text-white">{{ $v->total }}</td>
                                 </tr>
-                                @endforeach
                             @endforeach
                         </tbody>
                     </table>
