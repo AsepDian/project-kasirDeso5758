@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2022 at 12:00 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Mar 24, 2022 at 04:12 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,6 +31,7 @@ CREATE TABLE `detail_transaksi` (
   `id` int(11) NOT NULL,
   `transaksi_id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
+  `harga` double DEFAULT NULL,
   `jumlah` int(11) NOT NULL,
   `subtotal` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -39,26 +40,30 @@ CREATE TABLE `detail_transaksi` (
 -- Dumping data for table `detail_transaksi`
 --
 
-INSERT INTO `detail_transaksi` (`id`, `transaksi_id`, `menu_id`, `jumlah`, `subtotal`) VALUES
-(1, 1, 1, 4, 56000),
-(2, 1, 5, 2, 10000),
-(3, 1, 3, 2, 14000),
-(4, 2, 4, 4, 40000),
-(5, 2, 3, 1, 7000),
-(6, 2, 6, 2, 14000),
-(7, 3, 1, 2, 28000),
-(8, 3, 2, 2, 10000),
-(9, 3, 4, 2, 20000),
-(10, 4, 1, 4, 56000),
-(11, 4, 3, 1, 7000),
-(12, 4, 5, 2, 10000),
-(13, 4, 6, 1, 7000),
-(14, 5, 1, 4, 56000),
-(15, 5, 4, 4, 40000),
-(16, 5, 5, 4, 20000),
-(17, 5, 3, 4, 28000),
-(18, 6, 2, 2, 10000),
-(19, 7, 3, 4, 28000);
+INSERT INTO `detail_transaksi` (`id`, `transaksi_id`, `menu_id`, `harga`, `jumlah`, `subtotal`) VALUES
+(9, 5, 8, NULL, 2, 20000),
+(10, 6, 8, NULL, 2, 20000),
+(11, 6, 9, NULL, 2, 14000),
+(14, 7, 8, NULL, 2, 20000),
+(15, 7, 8, NULL, 2, 20000),
+(17, 9, 8, 10000, 2, 20000),
+(18, 10, 9, 7000, 2, 14000),
+(19, 11, 8, 10000, 2, 20000);
+
+--
+-- Triggers `detail_transaksi`
+--
+DELIMITER $$
+CREATE TRIGGER `log_laporan` AFTER INSERT ON `detail_transaksi` FOR EACH ROW BEGIN 
+INSERT INTO laporan
+SET tanggal = (SELECT tanggal FROM transaksi WHERE id=NEW.transaksi_id),
+nama_menu = (SELECT nama_menu FROM menu WHERE id = NEW.menu_id),
+harga = (SELECT harga FROM menu WHERE id=NEW.menu_id),
+jumlah = (SELECT jumlah FROM detail_transaksi WHERE id=NEW.id),
+total = (SELECT subtotal FROM detail_transaksi WHERE id=NEW.id);
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -76,9 +81,35 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama_kategori`) VALUES
-(1, 'makanan'),
 (2, 'Minuman'),
 (3, 'Cemilan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laporan`
+--
+
+CREATE TABLE `laporan` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime NOT NULL,
+  `nama_menu` varchar(50) NOT NULL,
+  `harga` double NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `total` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `laporan`
+--
+
+INSERT INTO `laporan` (`id`, `tanggal`, `nama_menu`, `harga`, `jumlah`, `total`) VALUES
+(1, '2022-03-24 08:13:28', 'Sosis Bakar', 20000, 2, 40000),
+(2, '2022-03-24 08:13:28', 'Sosis Bakar', 20000, 2, 40000),
+(3, '2022-03-24 08:20:26', 'Kopi Capucino', 6000, 2, 12000),
+(4, '2022-03-24 08:55:49', 'Sosis Bakar', 10000, 2, 20000),
+(5, '2022-03-24 09:41:28', 'Pop Ice', 7000, 2, 14000),
+(6, '2022-03-24 09:41:28', 'Sosis Bakar', 10000, 2, 20000);
 
 -- --------------------------------------------------------
 
@@ -99,12 +130,10 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `nama_menu`, `gambar`, `kategori_id`, `harga`) VALUES
-(1, 'Nasi Goreng', 'image-menu/jHsjb8mg7dZ78YftaZvx4TJJcGcTXObeOoVtVE9r.jpg', 1, 14000),
-(2, 'Kopi Hitam', 'image-menu/VlORhzTdy8cOW1643oiNpfsmz45pF5otfmptGz6i.jpg', 2, 5000),
-(3, 'Kopi capucino', 'image-menu/DTkPchropULCfwKCbB4dYNqLPjvSzX57ThmIvzTT.jpg', 2, 7000),
-(4, 'Sosis Bakar', 'image-menu/0YejUWieHAu3umPOUmK2SS9gLpf87TiRWmRFGxW0.jpg', 3, 10000),
-(5, 'susu', 'image-menu/ygPKRKh9bor95GE4QxK8jeCfRFX2bkI1hqVBkAux.jpg', 2, 5000),
-(6, 'Kopi Mocacino', 'image-menu/PhCCwbwjYqY6vta1xg3iJz2wqYLfYyquFRsUEs5u.jpg', 2, 7000);
+(8, 'Sosis Bakar', 'image-menu/AImbj3c19q6akRcgFM4sfHe1PJPELRRPUDOcIKcL.jpg', 3, 10000),
+(9, 'Pop Ice', 'image-menu/cAhPGHUFVfhVMUClsixqUF32838pjeoGZAUOY4On.jpg', 2, 7000),
+(13, 'kopi', 'image-menu/Vb35IOyRYQ09XcySCLi77erRGKJU6gdMQDbdc4st.jpg', 2, 5000),
+(17, 'Kopi Capucino', 'image-menu/XZ5308HpNgM96mkueSroUUINBvPUQ2qD3emV5QcM.jpg', 2, 10000);
 
 -- --------------------------------------------------------
 
@@ -114,8 +143,8 @@ INSERT INTO `menu` (`id`, `nama_menu`, `gambar`, `kategori_id`, `harga`) VALUES
 
 CREATE TABLE `transaksi` (
   `id` int(11) NOT NULL,
-  `tanggal` datetime NOT NULL DEFAULT current_timestamp(),
   `nama_pemesan` varchar(50) NOT NULL,
+  `tanggal` datetime NOT NULL DEFAULT current_timestamp(),
   `cash` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -123,14 +152,14 @@ CREATE TABLE `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id`, `tanggal`, `nama_pemesan`, `cash`) VALUES
-(1, '2022-03-16 20:30:29', 'Asep Dian', 100000),
-(2, '2022-03-16 20:30:38', 'Nurfi', 70000),
-(3, '2022-03-16 20:30:49', 'Indra Rusmana', 100000),
-(4, '2022-03-16 20:31:02', 'Devi Mulyana', 100000),
-(5, '2022-03-16 20:31:12', 'Iqbal Anugrah', 200000),
-(6, '2022-03-16 20:31:24', 'Dida Fathan', 10000),
-(7, '2022-03-16 20:31:36', 'Hilmi Aidzil', 30000);
+INSERT INTO `transaksi` (`id`, `nama_pemesan`, `tanggal`, `cash`) VALUES
+(5, 'Asep Dian', '2022-03-23 14:55:56', 100000),
+(6, 'Diann', '2022-03-23 14:56:16', 100000),
+(7, 'Diann', '2022-03-24 08:13:28', 80000),
+(8, 'Erwin', '2022-03-24 08:20:26', 15000),
+(9, 'Radit', '2022-03-24 08:55:49', 20000),
+(10, 'Diann', '2022-03-24 09:41:28', 20000),
+(11, 'Diann', '2022-03-24 09:41:28', 20000);
 
 -- --------------------------------------------------------
 
@@ -151,8 +180,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `level`) VALUES
-(1, 'Admin', 'asepdian@gmail.com', '$2y$10$Y33zzSJMm4q4sOUr4qnjv.m0s/esvJx8nO1JycsZ8yyNPCC00zzxe', 'admin'),
-(2, 'Kasir', 'dian@gmail.com', '$2y$10$TSeMfq129vjgiDkN.eGwL.abXgMeaguWeVItCWZu8dF0HKh53KC5u', 'kasir');
+(1, 'Admin', 'asepdian@gmail.com', '$2y$10$PUYH/5.5/o3dgVfIEx7jfOd9F.8HN6ZoIJU3WHTYmI2NPHgkE2Zoa', 'admin'),
+(2, 'Kasir', 'dian@gmail.com', '$2y$10$.dFiU11z8HObeRqbhsxwgOwujcACI7tvURaJAbis1RSU3Qn1I7fGC', 'kasir');
 
 --
 -- Indexes for dumped tables
@@ -162,7 +191,9 @@ INSERT INTO `users` (`id`, `nama`, `email`, `password`, `level`) VALUES
 -- Indexes for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menu_id` (`menu_id`),
+  ADD KEY `transaksi_id` (`transaksi_id`);
 
 --
 -- Indexes for table `kategori`
@@ -171,10 +202,17 @@ ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `laporan`
+--
+ALTER TABLE `laporan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kategori_id` (`kategori_id`);
 
 --
 -- Indexes for table `transaksi`
@@ -202,25 +240,48 @@ ALTER TABLE `detail_transaksi`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `laporan`
+--
+ALTER TABLE `laporan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  ADD CONSTRAINT `detail_transaksi_ibfk_1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_transaksi_ibfk_2` FOREIGN KEY (`transaksi_id`) REFERENCES `transaksi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `menu`
+--
+ALTER TABLE `menu`
+  ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`kategori_id`) REFERENCES `kategori` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
