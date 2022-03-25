@@ -35,7 +35,7 @@ input, button {
 .cont {
   position: relative;
   height: 100%;
-  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/slider-2.jpg');
+  background-image: url('../assets/images/auth/Login_bg.jpg');
   background-size: cover;
   overflow: auto;
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -124,7 +124,7 @@ input, button {
   height: 4rem;
   margin: 5rem 0 2.2rem;
   color: rgba(255, 255, 255, 0.8);
-  background: #FF3366;
+  background: #f85d03;
   font-size: 1.5rem;
   border-radius: 3rem;
   cursor: pointer;
