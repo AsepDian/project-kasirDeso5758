@@ -6,13 +6,14 @@ use App\Models\Menu;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
+use App\Models\Users;
 use Illuminate\Support\Facades\DB;
 
 class KasirController extends Controller
 {
     public function index(){
-        $menu = Menu::all();
-        return view('kasir.menu', compact('menu'));
+        $data['user'] = Users::count();
+        return view('kasir.menu', $data);
     }
     public function oldtransaksi(){
         $transaksi = Transaksi::where('cash', '!=', null)->get();

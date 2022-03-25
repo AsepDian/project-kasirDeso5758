@@ -1,35 +1,21 @@
 @extends('kasir.layout.main')
 @section('content')
-    <div class="col-lg-10 grid-margin stretch-card">
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Data Menu</h4>
-                </p>
-                <div class="table-responsive">
-                    <table class="table table-striped text-white">
-                        <thead>
-                            <tr>
-                                <th class="text-white"> NO </th>
-                                <th class="text-white"> Gambar </th>
-                                <th class="text-white"> Nama Menu </th>
-                                <th class="text-white"> Kategori </th>
-                                <th class="text-white"> Harga </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($menu as $values)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td> <img src="{{ asset('storage/' . $values->gambar) }}" alt=""></td>
-                                    <td> {{ $values->nama_menu }} </td>
-                                    <td> {{ $values->kategori->nama_kategori }} </td>
-                                    <td> {{ $values->harga }} </td>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-7">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">{{ $user }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-success ">
+                            <span class="mdi mdi-account-outline"></span>
+                        </div>
+                    </div>
                 </div>
+                <h6 class="text-muted font-weight-normal">Total User</h6>
             </div>
         </div>
     </div>

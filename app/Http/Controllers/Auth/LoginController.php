@@ -33,7 +33,7 @@ class LoginController extends Controller
         if (Auth()->user()->level == 'admin') {
             return 'admin';
         } else {
-            return 'kasir';
+            return 'kasirmenu';
         }
     }
 
