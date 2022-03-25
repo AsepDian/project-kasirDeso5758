@@ -7,6 +7,7 @@ use App\Models\Transaksi;
 use Mike42\Escpos\Printer;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
+use App\Models\Laporan;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 
 class TransaksiController extends Controller
@@ -148,7 +149,7 @@ class TransaksiController extends Controller
         // $printer->close();
         return redirect('transaksi');
     }
-    public function cetak(Transaksi $transaksi){
+    public function cetak(Laporan $laporan){
         // $connector = new WindowsPrintConnector("Printer Kasir");
 
         // /* Print a "Detail Pembelian" struk" */
@@ -162,14 +163,14 @@ class TransaksiController extends Controller
         // $printer->text("Kp.Sunia Sari Desa.Sukasukur\n");
         // $printer->text("================================\n");
         // $printer->setJustification(Printer::JUSTIFY_LEFT);
-        // $printer->text("Nama    : ".substr($transaksi->nama_pemesan, 0, 20)."\n");
-        // $printer->text("Tanggal : ".$transaksi->tanggal."\n");
+        // $printer->text("Nama    : ".substr($laporan->nama_pemesan, 0, 20)."\n");
+        // $printer->text("Tanggal : ".$laporan->tanggal."\n");
         // $printer->text("================================"); //32 karakter
         // $printer->text("Detail Pembelian\n");
         // $printer->text("--------------------------------");
         // $total = 0;
-        // foreach($transaksi->detail_transaksi as $dt){
-        //     $menu = $dt->jumlah.' '.$dt->menu->nama_menu;
+        // foreach($laporan as $dt){
+        //     $menu = $dt->jumlah.' '.$dt->nama_menu;
         //     $subtotal = $this->harga($dt->subtotal);
         //     $dot = $this->dot(strlen($menu) + strlen($subtotal));
         //     $printer->text($menu.$dot.$subtotal);
