@@ -56,6 +56,7 @@
                                 <th>Harga</th>
                                 <th>Jumlah</th>
                                 <th>Subtotal</th>
+                                <th colspan="2">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,14 +65,19 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $v->menu->nama_menu }}</td>
                                     <td>{{ $v->menu->harga }}</td>
-                                    <td>{{ $v->jumlah }}</td>
-                                    <td>{{ $v->subtotal }}</td>
+                                    <form action="{{ url('transaksi/update',['id'=>$v->id]) }}" method="post">
+                                        @csrf
+                                        <td><input class="form-control text-white" type="number" name="jumlah" value="{{ $v->jumlah }}"></td>
+                                        <td>{{ $v->subtotal }}</td>
+                                        <td><button type="submit" class="btn btn-success">edit</button></td>
+                                    </form>
+                                    <td><a href="{{ url('transaksi/hapus', ['id'=>$v->id]) }}" class="btn btn-danger">Hapus</a></td>
 
                                 </tr>
                             @endforeach
                             <tr>
                                 <td colspan="4" align="center">Total</td>
-                                <td>{{ $data->detail_transaksi->sum('subtotal') }}</td>
+                                <td colspan="3">{{ $data->detail_transaksi->sum('subtotal') }}</td>
                             </tr>
                         </tbody>
                     </table>

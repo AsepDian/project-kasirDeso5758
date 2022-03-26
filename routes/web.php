@@ -65,5 +65,7 @@ Route::middleware('auth')->group(function () {
         Route::post('transaksi/bayar/{transaksi}', [TransaksiController::class, 'bayar']);
         Route::post('transaksi/cetak/{transaksi}', [TransaksiController::class, 'cetak']);
         Route::resource('transaksi', TransaksiController::class);
+        Route::post('transaksi/update/{id}', [TransaksiController::class, 'updatejml']);
+        Route::get('transaksi/hapus/{id}', [TransaksiController::class, 'delete']);
     });
 });

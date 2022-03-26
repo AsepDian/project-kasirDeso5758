@@ -1,0 +1,1 @@
+alert('Cetak struk gagal lakukan pembayarn denganbenar!!')
