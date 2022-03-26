@@ -25,11 +25,11 @@
                                     <td> <img src="{{ asset('storage/' . $values->gambar) }}" alt=""></td>
                                     <td> {{ $values->nama_menu }} </td>
                                     <td> {{ $values->kategori->nama_kategori }} </td>
-                                    <td> {{ $values->harga }} </td>
+                                    <td> Rp. {{ $values->harga }} </td>
                                     <td>
                                         <a class="mdi mdi-border-color btn btn-success mb-1"
                                             href="{{ route('menu.edit', ['menu' => $values->id]) }}"></a>
-                                        <form action="{{ route('menu.destroy', $values->id) }}" method="post"
+                                        <form action="{{ route('menu.destroy', $values->id) }}" method="post" onclick="return confirm('Apakah Yakin Akan Hapus?')"
                                             style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')

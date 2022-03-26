@@ -34,9 +34,9 @@
                                     <td class="text-white">{{ $loop->iteration }}</td>
                                     <td class="text-white">{{ $v->tanggal }}</td>
                                     <td class="text-white">{{ $v->nama_menu }}</td>
-                                    <td class="text-white">{{ $v->harga }}</td>
+                                    <td class="text-white">Rp. {{ $v->harga }}</td>
                                     <td class="text-white">{{ $v->jumlah }}</td>
-                                    <td class="text-white">{{ $v->total }}</td>
+                                    <td class="text-white">Rp. {{ $v->total }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

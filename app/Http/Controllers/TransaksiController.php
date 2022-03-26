@@ -8,7 +8,6 @@ use Mike42\Escpos\Printer;
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
 use App\Models\Laporan;
-use Illuminate\Support\Facades\Log;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 
 class TransaksiController extends Controller
@@ -116,7 +115,7 @@ class TransaksiController extends Controller
     {
         $transaksi->update(['cash'=>$request->cash]);
 
-        $connector = new WindowsPrintConnector("Printer Kasir");
+        $connector = new WindowsPrintConnector("PrinterKasir");
 
         /* Print a "Detail Pembelian" struk" */
         $printer = new Printer($connector);
@@ -147,8 +146,6 @@ class TransaksiController extends Controller
         $printer->text("--------------------------------");
         $printer->text('Total'.$tot.$total_harga);
         if($bayar = $this->harga($request->cash) < $total_harga){
-            $message = 'Lakukan pembayaran Dengan Benar !!';
-            Log::alert($message);
             return back();
         }else{
         $bay = $this->dot(5 + strlen($bayar));
@@ -172,58 +169,58 @@ class TransaksiController extends Controller
         return redirect('transaksi');}
         
     }
-    public function cetak(Laporan $laporan){
-        // $connector = new WindowsPrintConnector("Printer Kasir");
+    // public function cetak(Laporan $laporan){
+    //     $connector = new WindowsPrintConnector("Printer Kasir");
 
-        // /* Print a "Detail Pembelian" struk" */
-        // $printer = new Printer($connector);
-        // $printer->text("================================");
-        // $printer->setJustification(Printer::JUSTIFY_CENTER);
-        // $printer->setTextSize(2,6);
-        // $printer->text("Kedai Deso 5757\n");
-        // $printer->setTextSize(1,1);
-        // $printer->text("Jln.Raya Garut Singaparna\n");
-        // $printer->text("Kp.Sunia Sari Desa.Sukasukur\n");
-        // $printer->text("================================\n");
-        // $printer->setJustification(Printer::JUSTIFY_LEFT);
-        // $printer->text("Nama    : ".substr($laporan->nama_pemesan, 0, 20)."\n");
-        // $printer->text("Tanggal : ".$laporan->tanggal."\n");
-        // $printer->text("================================"); //32 karakter
-        // $printer->text("Detail Pembelian\n");
-        // $printer->text("--------------------------------");
-        // $total = 0;
-        // foreach($laporan as $dt){
-        //     $menu = $dt->jumlah.' '.$dt->nama_menu;
-        //     $subtotal = $this->harga($dt->subtotal);
-        //     $dot = $this->dot(strlen($menu) + strlen($subtotal));
-        //     $printer->text($menu.$dot.$subtotal);
-        //     $total += $dt->subtotal;
-        // }
-        // $total_harga = $this->harga($total);
-        // $tot = $this->dot(5 + strlen($total_harga));
-        // $printer->text("--------------------------------");
-        // $printer->text('Total'.$tot.$total_harga);
-        // $bayar = $this->harga($dt->cash);
-        // $bay = $this->dot(5 + strlen($bayar));
-        // $printer->text('Bayar'.$bay.$bayar);
-        // $printer->text("--------------------------------");
-        // $kembalian = abs($total - $dt->cash);
-        // $kem = $this->harga($kembalian);
-        // $kem_dot = $this->dot(9 + strlen($kem));
-        // $printer->text('Kembalian'.$kem_dot.$kem);
-        // $printer->text("\n\n\n");
-        // $printer->setJustification(Printer::JUSTIFY_CENTER);
-        // $printer->text("================================\n");
-        // $printer->text("###LUNAS###\n");
-        // $printer->text("================================\n");
-        // $printer->text("Terima Kasih Telah Belanja ^-^\n");
-        // $printer->text("Silahkan Datang kembali\n");
-        // $printer->cut();
+    //     /* Print a "Detail Pembelian" struk" */
+    //     $printer = new Printer($connector);
+    //     $printer->text("================================");
+    //     $printer->setJustification(Printer::JUSTIFY_CENTER);
+    //     $printer->setTextSize(2,6);
+    //     $printer->text("Kedai Deso 5757\n");
+    //     $printer->setTextSize(1,1);
+    //     $printer->text("Jln.Raya Garut Singaparna\n");
+    //     $printer->text("Kp.Sunia Sari Desa.Sukasukur\n");
+    //     $printer->text("================================\n");
+    //     $printer->setJustification(Printer::JUSTIFY_LEFT);
+    //     $printer->text("Nama    : ".substr($laporan->nama_pemesan, 0, 20)."\n");
+    //     $printer->text("Tanggal : ".$laporan->tanggal."\n");
+    //     $printer->text("================================"); //32 karakter
+    //     $printer->text("Detail Pembelian\n");
+    //     $printer->text("--------------------------------");
+    //     $total = 0;
+    //     foreach($laporan as $dt){
+    //         $menu = $dt->jumlah.' '.$dt->nama_menu;
+    //         $subtotal = $this->harga($dt->subtotal);
+    //         $dot = $this->dot(strlen($menu) + strlen($subtotal));
+    //         $printer->text($menu.$dot.$subtotal);
+    //         $total += $dt->subtotal;
+    //     }
+    //     $total_harga = $this->harga($total);
+    //     $tot = $this->dot(5 + strlen($total_harga));
+    //     $printer->text("--------------------------------");
+    //     $printer->text('Total'.$tot.$total_harga);
+    //     $bayar = $this->harga($dt->cash);
+    //     $bay = $this->dot(5 + strlen($bayar));
+    //     $printer->text('Bayar'.$bay.$bayar);
+    //     $printer->text("--------------------------------");
+    //     $kembalian = abs($total - $dt->cash);
+    //     $kem = $this->harga($kembalian);
+    //     $kem_dot = $this->dot(9 + strlen($kem));
+    //     $printer->text('Kembalian'.$kem_dot.$kem);
+    //     $printer->text("\n\n\n");
+    //     $printer->setJustification(Printer::JUSTIFY_CENTER);
+    //     $printer->text("================================\n");
+    //     $printer->text("###LUNAS###\n");
+    //     $printer->text("================================\n");
+    //     $printer->text("Terima Kasih Telah Belanja ^-^\n");
+    //     $printer->text("Silahkan Datang kembali\n");
+    //     $printer->cut();
         
-        // /* Close printer */
-        // $printer->close();
-        return back();
-    }
+    //     /* Close printer */
+    //     $printer->close();
+    //     return back();
+    // }
 
     private function dot($count)
     {

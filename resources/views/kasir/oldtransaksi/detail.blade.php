@@ -43,15 +43,23 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $v->menu->nama_menu }}</td>
-                                    <td>{{ $v->harga }}</td>
+                                    <td>Rp. {{ $v->harga }}</td>
                                     <td>{{ $v->jumlah }}</td>
-                                    <td>{{ $v->subtotal }}</td>
+                                    <td>Rp. {{ $v->subtotal }}</td>
 
                                 </tr>
                             @endforeach
                             <tr>
                                 <td colspan="4" align="center">Total</td>
-                                <td>{{ $data->detail_transaksi->sum('subtotal') }}</td>
+                                <td>Rp. {{ $data->detail_transaksi->sum('subtotal') }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" align="center">Bayar</td>
+                                <td>Rp. {{ $data->cash }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" align="center">Kembalian</td>
+                                <td>Rp. {{ $data->cash - $data->detail_transaksi->sum('subtotal') }}</td>
                             </tr>
                         </tbody>
                     </table>

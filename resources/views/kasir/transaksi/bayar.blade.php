@@ -64,20 +64,20 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $v->menu->nama_menu }}</td>
-                                    <td>{{ $v->menu->harga }}</td>
+                                    <td>Rp. {{ $v->menu->harga }}</td>
                                     <form action="{{ url('transaksi/update',['id'=>$v->id]) }}" method="post">
                                         @csrf
                                         <td><input class="form-control text-white" type="number" name="jumlah" value="{{ $v->jumlah }}"></td>
                                         <td>{{ $v->subtotal }}</td>
-                                        <td><button type="submit" class="btn btn-success">edit</button></td>
+                                        <td><button type="submit" class="btn btn-success mdi mdi-auto-fix"></button></td>
                                     </form>
-                                    <td><a href="{{ url('transaksi/hapus', ['id'=>$v->id]) }}" class="btn btn-danger">Hapus</a></td>
+                                    <td><a href="{{ url('transaksi/hapus', ['id'=>$v->id]) }}" class="btn btn-danger mdi mdi-delete"></a></td>
 
                                 </tr>
                             @endforeach
                             <tr>
                                 <td colspan="4" align="center">Total</td>
-                                <td colspan="3">{{ $data->detail_transaksi->sum('subtotal') }}</td>
+                                <td colspan="3">Rp. {{ $data->detail_transaksi->sum('subtotal') }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -97,3 +97,4 @@
         </div>
     </div>
 @endsection
+@include('sweetalert::alert')

@@ -1,1 +1,1 @@
-alert('Cetak struk gagal lakukan pembayarn denganbenar!!')
+alert('Cetak struk gagal lakukan pembayarn denganbenar!!');

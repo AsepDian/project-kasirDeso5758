@@ -31,7 +31,7 @@
                                     <td>
                                         <a class="mdi mdi-border-color btn btn-success mb-1"
                                             href="{{ route('user.edit', ['user' => $values->id]) }}"></a>
-                                        <form action="{{ route('user.destroy', $values->id) }}" method="post"
+                                        <form action="{{ route('user.destroy', $values->id) }}" method="post" onclick="return confirm('Apakah Yakin Akan Hapus?')"
                                             style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')

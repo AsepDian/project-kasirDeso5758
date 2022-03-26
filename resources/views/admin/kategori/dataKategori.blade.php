@@ -40,7 +40,7 @@
                                         <a class="mdi mdi-border-color btn btn-success"
                                             href="{{ url('editkategori', ['id' => $values->id]) }}"></a>
                                         <a class="mdi mdi-delete btn btn-danger"
-                                            href="{{ url('hapuskategori', ['id' => $values->id]) }}"></a>
+                                            href="{{ url('hapuskategori', ['id' => $values->id]) }}" onclick="return confirm('Apakah Yakin Akan Hapus?')"></a>
                                     </td>
                                 </tr>
                             @endforeach
