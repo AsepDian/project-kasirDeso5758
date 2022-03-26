@@ -78,11 +78,11 @@
                         <span class="mdi mdi-menu"></span>
                     </button>
                     <ul class="navbar-nav navbar-nav-right">
-                        <li class="nav-item nav-settings d-none d-lg-block">
+                        {{-- <li class="nav-item nav-settings d-none d-lg-block">
                             <a class="nav-link" href="#">
                                 <i class="mdi mdi-view-grid"></i>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <div class="navbar-profile">
